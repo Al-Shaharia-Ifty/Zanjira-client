@@ -17,6 +17,7 @@ const Navbar = () => {
       setMenuOpen(false); // closes it ...
     };
     */
+
   return (
     <div>
       <div className="navbar bg-base-100 pl-5 md:px-20">

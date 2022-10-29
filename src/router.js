@@ -3,6 +3,7 @@ import About from "./Components/About";
 import Contact from "./Components/Contact";
 import Home from "./Components/Home";
 import Main from "./Layout/Main";
+import ErrorPage from "./Shared/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -26,5 +27,6 @@ export const router = createBrowserRouter([
         element: <Contact />,
       },
     ],
+    errorElement: <ErrorPage />,
   },
 ]);
