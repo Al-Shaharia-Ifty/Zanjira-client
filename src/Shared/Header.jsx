@@ -1,11 +1,17 @@
 import React from "react";
 import { AiOutlineSearch, AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
 import { BsHandbag } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 const Header = () => {
+  const data = useLoaderData();
+  const allCategory = data.map((c) => c.category);
+  const category = allCategory.filter(
+    (item, index) => allCategory.indexOf(item) === index
+  );
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -19,13 +25,14 @@ const Header = () => {
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1,
+      items: 2,
       slidesToSlide: 1, // optional, default to 1.
     },
   };
+
   return (
     <div>
-      <div className="bg-[#ff0000] w-full grid grid-cols-5">
+      <div className="bg-[#ff0000] w-full grid md:grid-cols-5 grid-cols-3">
         {/* dropdown */}
         <div className="md:flex hidden justify-center items-center">
           <div className="dropdown dropdown-hover">
@@ -49,91 +56,21 @@ const Header = () => {
               tabIndex={0}
               className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <Link
-                  className="font-medium hover:text-warning duration-300"
-                  to=""
-                >
-                  Backpack
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-medium hover:text-warning duration-300"
-                  to=""
-                >
-                  Bag
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-medium hover:text-warning duration-300"
-                  to=""
-                >
-                  Wallet
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-medium hover:text-warning duration-300"
-                  to=""
-                >
-                  Dairy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-medium hover:text-warning duration-300"
-                  to=""
-                >
-                  Digital Learning Pen
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-medium hover:text-warning duration-300"
-                  to=""
-                >
-                  Educational
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-medium hover:text-warning duration-300"
-                  to=""
-                >
-                  Headphone
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-medium hover:text-warning duration-300"
-                  to=""
-                >
-                  Perfume
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-medium hover:text-warning duration-300"
-                  to=""
-                >
-                  Quick Charger
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-medium hover:text-warning duration-300"
-                  to=""
-                >
-                  Wooden Clock
-                </Link>
-              </li>
+              {category.map((c) => (
+                <li>
+                  <Link
+                    className="font-medium hover:text-warning duration-300"
+                    to={`../category/${c}`}
+                  >
+                    {c}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
         {/* input */}
-        <div className="col-span-3 mx-20 p-2 flex justify-center">
+        <div className="md:col-span-3 col-span-2 lg:mx-20 md:mx-10 sm:mx-2 p-2 flex justify-center">
           <input
             className="w-full rounded-l-full px-5"
             placeholder="Search Products"
@@ -144,7 +81,7 @@ const Header = () => {
           </button>
         </div>
         {/* cart */}
-        <div className="flex items-center text-2xl text-white">
+        <div className="flex items-center justify-center text-2xl sm:mr-2 text-white">
           <button className="mr-2">
             <AiOutlineUser />
           </button>
@@ -157,15 +94,14 @@ const Header = () => {
         </div>
       </div>
       <div className="md:hidden">
-        <Carousel responsive={responsive}>
-          <div>Item 1</div>
-          <div>Item 2</div>
-          <div>Item 3</div>
-          <div>Item 4</div>
-          <div>Item 5</div>
-          <div>Item 6</div>
-          <div>Item 7</div>
-          <div>Item 8</div>
+        <Carousel arrows={false} responsive={responsive}>
+          {category.map((c) => (
+            <div className="px-12 bg-green-300 text-center">
+              <Link className="" to={`../category/${c}`}>
+                {c}
+              </Link>
+            </div>
+          ))}
         </Carousel>
       </div>
     </div>
