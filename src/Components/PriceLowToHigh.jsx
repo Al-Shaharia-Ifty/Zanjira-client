@@ -1,12 +1,15 @@
+import React from "react";
 import { BsHeart } from "react-icons/bs";
 import { Link, useLoaderData } from "react-router-dom";
 
-const DefaultProduct = () => {
+const PriceLowToHigh = () => {
   const data = useLoaderData();
+  const product = data.sort((a, b) => a.sellPrice - b.sellPrice);
+
   return (
     <div>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 p-10  ">
-        {data.map((p) => (
+        {product.map((p) => (
           <div
             data-aos="fade-up"
             data-aos-duration="400"
@@ -45,4 +48,4 @@ const DefaultProduct = () => {
   );
 };
 
-export default DefaultProduct;
+export default PriceLowToHigh;
