@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useRouteError } from "react-router-dom";
 import Header from "./Header";
 import Navbar from "./Navbar";
 
 const ErrorPage = () => {
   const error = useRouteError();
+
+  // title name
+  useEffect(() => {
+    document.title = "Error Page - Zanjira";
+  }, []);
   return (
     <>
       <Navbar />

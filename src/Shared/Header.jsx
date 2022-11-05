@@ -4,13 +4,19 @@ import { BsHandbag } from "react-icons/bs";
 import { Link, useLoaderData } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Header = () => {
   const data = useLoaderData();
+  const [tit, setTit] = useState("");
   const allCategory = data.map((c) => c.category);
   const category = allCategory.filter(
     (item, index) => allCategory.indexOf(item) === index
   );
+  useEffect(() => {
+    document.title = tit;
+  }, [tit]);
 
   const responsive = {
     desktop: {
@@ -57,7 +63,7 @@ const Header = () => {
               className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
             >
               {category.map((c) => (
-                <li>
+                <li onClick={() => setTit(c)}>
                   <Link
                     className="font-medium hover:text-warning duration-300"
                     to={`../category/${c}`}
@@ -96,7 +102,10 @@ const Header = () => {
       <div className="md:hidden">
         <Carousel arrows={false} responsive={responsive}>
           {category.map((c) => (
-            <div className="px-12 bg-green-300 text-center">
+            <div
+              onClick={() => setTit(c)}
+              className="px-10 mx-2 rounded-lg mt-2 h-14 bg-green-300 flex text-center items-center"
+            >
               <Link className="" to={`../category/${c}`}>
                 {c}
               </Link>

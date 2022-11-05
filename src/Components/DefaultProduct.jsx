@@ -3,6 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const DefaultProduct = () => {
   const data = useLoaderData();
+
   return (
     <div>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 p-10  ">
@@ -15,13 +16,19 @@ const DefaultProduct = () => {
           >
             <button
               onClick={() => console.log("hello")}
-              className="bg-warning hover:bg-info duration-200 hover:text-white love-button text-xl rounded-full p-3 absolute top-3 left-3"
+              className="bg-warning hover:bg-red-500 duration-200 hover:text-white love-button text-xl rounded-full p-3 absolute top-3 left-3"
             >
               <BsHeart />
             </button>
-            <Link to={`../product/${p._id}`}>
-              <img className="w-full rounded-t-lg " src={p.img} alt="" />
-              <div className="mx-5">
+            <Link to={`../../product/${p._id}`}>
+              <div className="h-80">
+                <img
+                  className="w-full h-full rounded-t-lg "
+                  src={p.img}
+                  alt=""
+                />
+              </div>
+              <div className="mx-5 pb-16">
                 <h2 className="font-bold md:text-xl text-md text-center mt-3">
                   {p.name}
                 </h2>
@@ -33,11 +40,12 @@ const DefaultProduct = () => {
                 </div>
               </div>
             </Link>
-            <div className="flex justify-center items-center my-3">
-              <button className="btn btn-warning hover:btn-info duration-200">
-                Add to Cart
-              </button>
-            </div>
+            <button
+              onClick={() => console.log("hello")}
+              className="btn btn-warning absolute bottom-3 right-3"
+            >
+              add to Cart
+            </button>
           </div>
         ))}
       </div>

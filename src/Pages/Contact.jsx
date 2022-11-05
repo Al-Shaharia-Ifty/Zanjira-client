@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Contact = () => {
+  // title name
+  useEffect(() => {
+    document.title = "Contact Us - Zanjira";
+  }, []);
   return (
     <div>
       <h2>Contact Us</h2>

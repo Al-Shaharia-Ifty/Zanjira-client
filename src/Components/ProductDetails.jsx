@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { MdDoubleArrow } from "react-icons/md";
 
@@ -63,6 +63,9 @@ const ProductDetails = () => {
       setDisableMinus(true);
     }
   };
+  useEffect(() => {
+    document.title = name;
+  }, [name]);
 
   return (
     <div className="min-h-screen mx-10">

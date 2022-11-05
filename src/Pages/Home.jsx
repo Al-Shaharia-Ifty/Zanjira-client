@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import PriceCategory from "../Components/PriceCategory";
-
 const Home = () => {
   const navigate = useNavigate();
   const handlePrice = (e) => {
@@ -15,6 +14,11 @@ const Home = () => {
       navigate("/price-low-to-high");
     }
   };
+  // title name
+  useEffect(() => {
+    document.title = "Home - Zanjira";
+  }, []);
+
   return (
     <div className="min-h-screen">
       <PriceCategory handlePrice={handlePrice} />
@@ -24,4 +28,3 @@ const Home = () => {
 };
 
 export default Home;
-// product = data.sort((a, b) => b.sellPrice - a.sellPrice);
