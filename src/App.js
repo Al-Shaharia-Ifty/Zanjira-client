@@ -9,7 +9,6 @@ function App() {
     AOS.init();
     AOS.refresh();
   }, []);
-
   return (
     <div>
       <RouterProvider router={router}></RouterProvider>
